@@ -1,38 +1,43 @@
 package main
 
-import (
-	"math"
-	"fmt"
-)
+import "fmt"
 
-type Abser interface {
-	Abs() float64
+type Animal interface {
+	Speak() string
+}
+
+type Dog struct {
+}
+
+func (d Dog) Speak() string {
+	return "Woof!"
+}
+
+type Cat struct {
+}
+
+func (c Cat) Speak() string {
+	return "Meow!"
+}
+
+type Llama struct {
+}
+
+func (l Llama) Speak() string {
+	return "?????"
+}
+
+type JavaProgrammer struct {
+}
+
+func (j JavaProgrammer) Speak() string {
+	return "Design patterns!"
 }
 
 func main() {
-	var a Abser
-	f := MyFloat(-math.Sqrt2)
-	v := Vertex{3,4}
-	a = f // a MyFloat implements Abser
-	a = &v // a *Vertex implements Abser
-	a = v // in the following line, v is a Vertex (not *Vertex) and does NOT implement Abser
-	fmt.Println(a.Abs())
-}
-
-type MyFloat float64
-
-func (f MyFloat) Abs() float64 {
-	if f < 0 {
-		return float64(-f)
+	animals := []Animal{Dog{}, Cat{}, Llama{}, JavaProgrammer{}}
+	for _, animal := range animals {
+		fmt.Println(animal.Speak())
 	}
-	return float64(f)
-}
-
-type Vertex struct {
-	X, Y float64
-}
-
-func (v* Vertex) Abs() float64 {
-	return math.Sqrt(v.X * v.X + v.Y * v.Y)
 }
 
